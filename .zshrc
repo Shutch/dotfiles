@@ -62,7 +62,7 @@ ZSH_THEME="agnoster"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git archlinux github python sudo pip
+  git archlinux github python sudo pip poetry
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -108,10 +108,11 @@ alias cat='bat'
 alias disable-trackpad='xinput --disable "Synaptics TM2749-001"'
 alias enable-trackpad='xinput --enable "Synaptics TM2749-001"'
 alias reset-trackpad='sudo modprobe -r psmouse; sudo modprobe psmouse'
-alias docked='sudo mount /dev/sdb1 /mnt/zorro; xrandr --output eDP1 --auto; xrandr --output DP2-1 --auto --right-of eDP1; xrandr --output DP2-2 --auto --right-of DP2-1'
 alias undocked='sudo umount /mnt/zorro/; xrandr --output DP2-2 --off; xrandr --output DP2-1 --off; xrandr --output eDP1 --auto'
 alias games='sudo mount /dev/sdb1 /mnt/zorro; xrandr --output DP2-1 --auto; xrandr --output DP2-2 --off; xrandr --output eDP1 --off'
-alias work-SOC='cd ~/git/SOC/;pipenv shell'
+alias docked='sudo mount /dev/sdb1 /mnt/zorro; xrandr --output eDP1 --auto; xrandr --output DP2-2 --auto --left-of eDP1; xrandr --output DP2-1 --auto --left-of DP2-2'
+alias corona='xrandr --output eDP1 --auto; xrandr --output DP2-2 --auto --left-of eDP1; xrandr --output DP2-1 --off'
+alias work-SOC='cd ~/git/SOC/; pipenv shell'
 alias suspend='systemctl suspend'
 alias dpt='/home/michael/.local/share/virtualenvs/motd-m453ljxO/bin/python /home/michael/git/motd/dpt.py'
 alias wsb='/home/michael/.local/share/virtualenvs/motd-m453ljxO/bin/python /home/michael/git/motd/wsb.py'
@@ -119,6 +120,7 @@ alias weather='/home/michael/.local/share/virtualenvs/motd-m453ljxO/bin/python /
 alias zorro_run='WINEPREFIX=/mnt/zorro/ /mnt/zorro/drive_c/zorro/Zorro.exe'
 alias zorro_cd='cd /mnt/zorro/drive_c/zorro/'
 alias bandit='ssh bandit.labs.overthewire.org:2220 -l bandit0'
+alias friends='echo \:\)'
 
 # random PATH stuff
 export PATH="$PATH:/home/michael/.gem/ruby/2.5.0/bin/"
@@ -130,3 +132,12 @@ unfunction work_in_progress
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+
+# Android studio variables
+export ANDROID_SDK_HOME="/mnt/zorro/bug_bounties/android/sdk/"
+export ANDROID_EMULATOR_HOME="/mnt/zorro/bug_bounties/android/sdk/.android/"
+export ANDROID_AVD_HOME="/mnt/zorro/bug_bounties/android/sdk/avd/"
+
+# Conda path
+PATH="/opt/miniconda3/bin/:$PATH"
+

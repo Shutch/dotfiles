@@ -17,6 +17,8 @@ Plugin 'mileszs/ack.vim'
 "Plugin 'davidhalter/jedi-vim'
 Plugin 'nvie/vim-flake8'
 Plugin 'Yggdroot/indentLine'
+Plugin 'dense-analysis/ale'
+Plugin 'JamshedVesuna/vim-markdown-preview'
 
 call vundle#end()		" required
 filetype plugin indent on	" required
@@ -36,6 +38,10 @@ let g:airline_theme = 'tender'
 inoremap jk <Esc>
 nmap <F6> :NERDTreeToggle<CR>
 
+" markdown preview configs
+let vim_markdown_preview_github=1
+let vim_markdown_preview_use_xdg_open=1
+
 " basic vim options
 set noerrorbells
 set tabstop=4
@@ -44,4 +50,4 @@ set expandtab
 set number relativenumber
 set nu rnu
 set nowrap
-set colorcolumn=80
+set colorcolumn=88
