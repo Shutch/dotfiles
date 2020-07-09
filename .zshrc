@@ -101,8 +101,6 @@ alias enable-wifi='nmcli radio wifi on'
 alias disable-wifi='nmcli radio wifi off'
 alias reload-zshrc='source ~/.zshrc'
 alias reset-sound='alsactl restore'
-alias rpi-server='ssh 192.168.1.66'
-alias nochains='ssh nochains.club -p 555'
 alias min-brightness='sudo tee /sys/class/backlight/intel_backlight/brightness <<< 1'
 alias cat='bat'
 alias disable-trackpad='xinput --disable "Synaptics TM2749-001"'
@@ -111,15 +109,9 @@ alias reset-trackpad='sudo modprobe -r psmouse; sudo modprobe psmouse'
 alias undocked='sudo umount /mnt/zorro/; xrandr --output DP2-2 --off; xrandr --output DP2-1 --off; xrandr --output eDP1 --auto'
 alias games='sudo mount /dev/sdb1 /mnt/zorro; xrandr --output DP2-1 --auto; xrandr --output DP2-2 --off; xrandr --output eDP1 --off'
 alias docked='sudo mount /dev/sdb1 /mnt/zorro; xrandr --output eDP1 --auto; xrandr --output DP2-2 --auto --left-of eDP1; xrandr --output DP2-1 --auto --left-of DP2-2'
-alias corona='xrandr --output eDP1 --auto; xrandr --output DP2-2 --auto --left-of eDP1; xrandr --output DP2-1 --off'
-alias work-SOC='cd ~/git/SOC/; pipenv shell'
 alias suspend='systemctl suspend'
-alias dpt='/home/michael/.local/share/virtualenvs/motd-m453ljxO/bin/python /home/michael/git/motd/dpt.py'
-alias wsb='/home/michael/.local/share/virtualenvs/motd-m453ljxO/bin/python /home/michael/git/motd/wsb.py'
-alias weather='/home/michael/.local/share/virtualenvs/motd-m453ljxO/bin/python /home/michael/git/motd/weather.py'
 alias zorro_run='WINEPREFIX=/mnt/zorro/ /mnt/zorro/drive_c/zorro/Zorro.exe'
 alias zorro_cd='cd /mnt/zorro/drive_c/zorro/'
-alias bandit='ssh bandit.labs.overthewire.org:2220 -l bandit0'
 alias friends='echo \:\)'
 
 # random PATH stuff
@@ -140,4 +132,21 @@ export ANDROID_AVD_HOME="/mnt/zorro/bug_bounties/android/sdk/avd/"
 
 # Conda path
 PATH="/opt/miniconda3/bin/:$PATH"
+
+# Doesn't activate base by default
+export CONDA_AUTO_ACTIVATE_BASE=false
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/opt/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/opt/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/opt/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/opt/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
 
