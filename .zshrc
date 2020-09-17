@@ -2,12 +2,12 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/michael/.oh-my-zsh"
+export ZSH="/home/koalefant/.oh-my-zsh"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="agnoster"
+# ZSH_THEME="agnoster"
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -39,12 +39,12 @@ ZSH_THEME="agnoster"
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
@@ -62,7 +62,7 @@ ZSH_THEME="agnoster"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git archlinux github python sudo pip poetry
+  git archlinux github python sudo
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -103,50 +103,17 @@ alias reload-zshrc='source ~/.zshrc'
 alias reset-sound='alsactl restore'
 alias min-brightness='sudo tee /sys/class/backlight/intel_backlight/brightness <<< 1'
 alias cat='bat'
-alias disable-trackpad='xinput --disable "Synaptics TM2749-001"'
-alias enable-trackpad='xinput --enable "Synaptics TM2749-001"'
 alias reset-trackpad='sudo modprobe -r psmouse; sudo modprobe psmouse'
-alias undocked='sudo umount /mnt/zorro/; xrandr --output DP2-2 --off; xrandr --output DP2-1 --off; xrandr --output eDP1 --auto'
-alias games='sudo mount /dev/sdb1 /mnt/zorro; xrandr --output DP2-1 --auto; xrandr --output DP2-2 --off; xrandr --output eDP1 --off'
-alias docked='sudo mount /dev/sdb1 /mnt/zorro; xrandr --output eDP1 --auto; xrandr --output DP2-2 --auto --left-of eDP1; xrandr --output DP2-1 --auto --left-of DP2-2'
+alias undocked='xrandr --output DP-2-2 --off; xrandr --output DP-2-1 --off; xrandr --output eDP-1 --auto --'
+alias games='xrandr --dpi 96/DP-2-2 --output DP-2-1 --auto; xrandr --output DP-2-2 --off; xrandr --output eDP-1 --off'
+alias docked='xrandr --dpi 157/eDP-1 --output eDP-1 --auto; xrandr --dpi 96/DP-2-2 --output DP-2-2 --auto --left-of eDP-1; xrandr --dpi 96/DP-2-2 --output DP-2-1 --auto --left-of DP-2-2'
 alias suspend='systemctl suspend'
-alias zorro_run='WINEPREFIX=/mnt/zorro/ /mnt/zorro/drive_c/zorro/Zorro.exe'
-alias zorro_cd='cd /mnt/zorro/drive_c/zorro/'
 alias friends='echo \:\)'
+alias vimdiff='nvim -d'
+alias vim='nvim'
 
-# random PATH stuff
-export PATH="$PATH:/home/michael/.gem/ruby/2.5.0/bin/"
-export PATH="$PATH:/home/michael/.local/bin"
-export PATH="$PATH:/home/michael/.cargo/bin"
+export EDITOR=nvim
 
-# rogue functions
-unfunction work_in_progress
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-
-# Android studio variables
-export ANDROID_SDK_HOME="/mnt/zorro/bug_bounties/android/sdk/"
-export ANDROID_EMULATOR_HOME="/mnt/zorro/bug_bounties/android/sdk/.android/"
-export ANDROID_AVD_HOME="/mnt/zorro/bug_bounties/android/sdk/avd/"
-
-# Conda path
-PATH="/opt/miniconda3/bin/:$PATH"
-
-# Doesn't activate base by default
-export CONDA_AUTO_ACTIVATE_BASE=false
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/opt/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/opt/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/opt/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/opt/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
+fpath+=$HOME/.zsh/pure
+autoload -U promptinit; promptinit
+prompt pure
