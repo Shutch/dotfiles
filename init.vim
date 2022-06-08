@@ -3,8 +3,6 @@ set encoding=utf-8
 set clipboard+=unnamedplus
 set hidden
 
-inoremap jk <Esc>
-
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -17,6 +15,8 @@ Plug 'dense-analysis/ale'
 Plug 'junegunn/fzf.vim'
 Plug 'davidhalter/jedi'
 Plug 'stsewd/sphinx.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'kdheepak/lazygit.nvim', { 'branch': 'nvim-v0.4.3' }
+Plug 'vimwiki/vimwiki'
 
 call plug#end()
 
@@ -40,15 +40,18 @@ set colorcolumn=88
 au BufNewFile,BufRead *.py
     \ set foldmethod=indent
 
+au BufNewFile,BufRead *.rs
+    \ set foldmethod=syntax
+
 nnoremap <space> za
 
 " Linters
 let g:ale_linters = {
       \   'python': ['flake8'],
+      \   'rust': ['rls'],
       \}
 
 " Jump to definition
-nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)

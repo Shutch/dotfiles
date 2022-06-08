@@ -36,6 +36,9 @@ floating_modifier $mod
 # start a terminal
 bindsym $mod+Return exec alacritty
 
+# flameshot GUI
+bindsym Print exec flameshot gui
+
 # kill focused window
 bindsym $mod+Shift+q kill
 
@@ -164,4 +167,6 @@ bar {
 }
 
 exec --no-startup-id dockd --daemon
+exec --no-startup-id flameshot
+exec --no-startup-id fcitx -d
 

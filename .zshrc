@@ -74,13 +74,6 @@ source $ZSH/oh-my-zsh.sh
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
-# Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
- export EDITOR='vim'
-else
- export EDITOR='mvim'
-fi
-
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
@@ -104,13 +97,20 @@ alias reset-sound='alsactl restore'
 alias min-brightness='sudo tee /sys/class/backlight/intel_backlight/brightness <<< 1'
 alias cat='bat'
 alias reset-trackpad='sudo modprobe -r psmouse; sudo modprobe psmouse'
-alias undocked='xrandr --output DP-2-2 --off; xrandr --output DP-2-1 --off; xrandr --output eDP-1 --auto --'
-alias games='xrandr --dpi 96/DP-2-2 --output DP-2-1 --auto; xrandr --output DP-2-2 --off; xrandr --output eDP-1 --off'
-alias docked='xrandr --dpi 157/eDP-1 --output eDP-1 --auto; xrandr --dpi 96/DP-2-2 --output DP-2-2 --auto --left-of eDP-1; xrandr --dpi 96/DP-2-2 --output DP-2-1 --auto --left-of DP-2-2'
+alias undocked='xrandr --output eDP-1 --auto; xrandr --output DP-2-2 --off; xrandr --output DP-2-1 --off'
+alias games='xrandr --output DP-2-1 --auto; xrandr --output DP-2-2 --off; xrandr --output eDP-1 --off'
+alias docked='xrandr --output DP-2-1 --auto; xrandr --output DP-2-2 --auto --right-of DP-2-1; xrandr --output eDP-1 --auto --right-of DP-2-2'
 alias suspend='systemctl suspend'
 alias friends='echo \:\)'
-alias vimdiff='nvim -d'
-alias vim='nvim'
+# alias vimdiff='nvim -d'
+# alias vim='nvim'
+alias vimdiff='~/.local/bin/lvim -d'
+alias vim='~/.local/bin/lvim'
+alias ports='sudo netstat -tunlp'
+alias connect-memaroe='bluetoothctl connect 4C:87:5D:07:04:E0'
+alias disconnect-memaroe='bluetoothctl disconnect 4C:87:5D:07:04:E0'
+alias connect-buds='bluetoothctl connect E8:7F:6B:98:FE:E6'
+alias disconnect-buds='bluetoothctl disconnect E8:7F:6B:98:FE:E6'
 
 export EDITOR=nvim
 
