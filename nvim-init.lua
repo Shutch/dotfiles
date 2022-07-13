@@ -7,7 +7,7 @@ vim.opt.relativenumber = true
 vim.opt.colorcolumn = '88'
 vim.opt.wrap = false
 
-vim.g.mapleader = " "  -- Set Leader to space
+vim.g.mapleader = " " -- Set Leader to space
 
 -- keybindings
 vim.keymap.set('n', '<Leader>ff', '<Cmd>Telescope find_files<CR>', { noremap = true })
@@ -15,9 +15,9 @@ vim.keymap.set('n', '<Leader>fg', '<Cmd>Telescope live_grep<CR>', { noremap = tr
 vim.keymap.set('n', '<Leader>fb', '<Cmd>Telescope buffers<CR>', { noremap = true })
 
 local fn = vim.fn
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
-  packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+  packer_bootstrap = fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
 end
 
 return require('packer').startup(function(use)
@@ -25,10 +25,12 @@ return require('packer').startup(function(use)
   -- colorscheme
   use {
     'navarasu/onedark.nvim',
-	config = {
-	  require('onedark').setup { style = 'darker' },
-	  require('onedark').load()
-	}
+    config = {
+      function()
+        require('onedark').setup { style = 'darker' }
+        require('onedark').load()
+      end
+    }
   }
 
   -- fuzzy file finder
@@ -44,7 +46,7 @@ return require('packer').startup(function(use)
       'kyazdani42/nvim-web-devicons', -- optional, for file icons
     },
     config = {
-        require("nvim-tree").setup()
+      function() require("nvim-tree").setup() end
     }
   }
 
@@ -59,7 +61,7 @@ return require('packer').startup(function(use)
     "williamboman/nvim-lsp-installer",
     'neovim/nvim-lspconfig',
     config = {
-      require('nvim-lsp-installer').setup()
+      function() require('nvim-lsp-installer').setup() end
     }
   }
 
@@ -77,7 +79,7 @@ return require('packer').startup(function(use)
   use {
     'feline-nvim/feline.nvim',
     config = {
-      require('feline').setup()
+      function() require('feline').setup() end
     }
   }
 
@@ -86,4 +88,3 @@ return require('packer').startup(function(use)
     require('packer').sync()
   end
 end)
-
