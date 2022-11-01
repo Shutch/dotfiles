@@ -24,11 +24,11 @@ require('packer').startup(function(use)
   -- plugins start --
   -- colorscheme
   use {
-    'navarasu/onedark.nvim',
+    'folke/tokyonight.nvim',
     config = {
       function()
-        require('onedark').setup { style = 'darker' }
-        require('onedark').load()
+        require("tokyonight").setup { style = "night" }
+        require("tokyonight").load()
       end
     }
   }
